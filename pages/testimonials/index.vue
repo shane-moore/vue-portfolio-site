@@ -13,22 +13,22 @@
       </article>
     </section>
     <Testimonial01 />
-    <!-- <Testimonial02 />
-    <Testimonial03 /> -->
+    <Testimonial02 />
+    <Testimonial03 />
   </div>
 </template>
 
 <script>
 import Testimonial01 from './testimonial01/index'
-// import Testimonial02 from './testimonial02/index'
-// import Testimonial03 from './testimonial03/index'
+import Testimonial02 from './testimonial02/index'
+import Testimonial03 from './testimonial03/index'
 
 export default {
   name: 'Testimonials',
   components: {
     Testimonial01,
-    // Testimonial02,
-    // Testimonial03,
+    Testimonial02,
+    Testimonial03,
   },
 }
 </script>

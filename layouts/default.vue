@@ -1,5 +1,7 @@
+<!-- uses default.vue if no other layout is specified on the page -->
 <template>
   <div>
+    <TheHeader />
     <Nuxt />
   </div>
 </template>
