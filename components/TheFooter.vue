@@ -12,6 +12,51 @@
             with best practices.
           </div>
         </div>
+        <div class="title-container">
+          <p>Full Stack Developer - Front End Specialist</p>
+          <nuxt-link to="/GetInTouch">
+            AVAILABLE JANUARY 2020. Hire Shane
+            <font-awesome-icon :icon="['fas', 'chevron-right']"
+          /></nuxt-link>
+        </div>
+        <div class="connect-container">
+          <div class="contact-links-container">
+            <div class="linkedin-container">
+              <a href="https://www.linkedin.com/in/shanekmoore/" target="_blank"
+                ><font-awesome-icon :icon="['fab', 'linkedin']" />LINKEDIN</a
+              >
+              <div class="contact-me-description">Let's connect</div>
+            </div>
+            <div class="github-container">
+              <a href="https://github.com/shane-moore" target="_blank"
+                ><font-awesome-icon :icon="['fab', 'github']" />GITHUB</a
+              >
+              <div class="contact-me-description">
+                See some of the tools I've been adding to my belt
+              </div>
+            </div>
+          </div>
+          <div class="routes-container">
+            <div class="route-container">
+              <div class="route">
+                <nuxt-link to="/About">About</nuxt-link>
+              </div>
+              <p class="route__label">About</p>
+            </div>
+            <div class="route-container">
+              <div class="route">
+                <nuxt-link to="/Articles/index">Articles</nuxt-link>
+              </div>
+              <p class="route__label">Articles</p>
+            </div>
+            <div class="route-container">
+              <div class="route">
+                <nuxt-link to="/GetInTouch.vue">Get In Touch</nuxt-link>
+              </div>
+              <p class="route__label">Get In Touch</p>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   </div>

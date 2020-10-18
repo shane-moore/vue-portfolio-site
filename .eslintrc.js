@@ -16,5 +16,15 @@ module.exports = {
   ],
   plugins: ['prettier'],
   // add your custom rules here
-  rules: { "prettier/prettier": ["error", { "endOfLine": "auto" }] }
+  rules: {
+    'prettier/prettier': ['error', { endOfLine: 'auto' },
+    ],
+    "max-len": ["error", 140, 2, {
+      ignoreComments: false,
+      ignoreRegExpLiterals: true,
+      ignoreStrings: false,
+      ignoreTemplateLiterals: false,
+    }],
+    "vue/max-attributes-per-line": "off"
+  }
 }
