@@ -1,4 +1,9 @@
 export default {
+  generate: {
+    exclude: [/^\/Articles/, /^\/testimonials/],
+    routes: [
+    ]
+  },
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
@@ -58,8 +63,23 @@ export default {
     ],
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/axios'
   ],
+  axios: {
+    baseURL: 'http://localhost:4000', // Used as fallback if no runtime config is provided
+  },
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.BROWSER_BASE_URL
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.BASE_URL
+    }
+  },
   styleResources: {
     scss: '@/assets/scss/_variables.scss'
   },

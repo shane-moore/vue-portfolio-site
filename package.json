@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
     "build": "nuxt build",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "dev": "NODE_ENV=development nuxt & yarn functions:serve",
     "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "npm run lint:js"
+    "generate": "NODE_ENV=production nuxt generate && yarn functions:build",
+    "functions:serve": "netlify-lambda serve lambda",
+    "functions:build": "netlify-lambda build lambda",
+    "precommit": "npm run lint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -20,6 +22,7 @@
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
     "i": "^0.3.6",
+    "netlify-lambda": "^2.0.1",
     "npm": "^6.14.8",
     "nuxt": "^2.14.6",
     "nuxt-fontawesome": "^0.4.0",

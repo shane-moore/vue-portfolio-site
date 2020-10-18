@@ -78,6 +78,8 @@ export default {
     onSubmit(evt) {
       evt.preventDefault()
       alert(JSON.stringify(this.form))
+      // perform ajax call to server to send the mail
+      const formData = new FormData();
     },
     onReset(evt) {
       evt.preventDefault()
