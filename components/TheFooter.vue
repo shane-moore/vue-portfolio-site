@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar fixed-bottom navbar-light bg-light">
+    <nav class="navbar sticky-bottom navbar-light bg-light">
       <a class="navbar-brand" href="#">Fixed bottom</a>
       <div class="footer-container">
         <div class="description-container">

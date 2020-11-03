@@ -9,37 +9,37 @@
     </div>
     <div class="form-wrapper">
       <h4>Tell Me More</h4>
+      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+        <b-form-group id="input-group-1" label="Your Name:" label-for="input-1">
+          <b-form-input
+            id="input-1"
+            v-model="form.name"
+            required
+            placeholder="e.g. Alan Turing"
+          ></b-form-input>
+        </b-form-group>
 
-      <b-form-group id="input-group-1" label="Your Name:" label-for="input-1">
-        <b-form-input
-          id="input-1"
-          v-model="form.name"
-          required
-          placeholder="e.g. Alan Turing"
-        ></b-form-input>
-      </b-form-group>
+        <b-form-group id="input-group-2" label="Email:" label-for="input-2">
+          <b-form-input
+            id="input-2"
+            v-model="form.email"
+            required
+            placeholder="e.g. skm1790@gmail.com"
+          ></b-form-input>
+        </b-form-group>
 
-      <b-form-group id="input-group-2" label="Email:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.email"
-          required
-          placeholder="e.g. skm1790@gmail.com"
-        ></b-form-input>
-      </b-form-group>
+        <b-form-group id="input-group-3" label="Your Site:" label-for="input-3">
+          <b-form-input
+            id="input-3"
+            v-model="form.yourSite"
+            required
+            placeholder="e.g. shanekmoore.com"
+          ></b-form-input>
+        </b-form-group>
 
-      <b-form-group id="input-group-3" label="Your Site:" label-for="input-3">
-        <b-form-input
-          id="input-3"
-          v-model="form.yourSite"
-          required
-          placeholder="e.g. shanekmoore.com"
-        ></b-form-input>
-      </b-form-group>
-
-       <b-form-group id="input-group-4">
+        <b-form-group id="input-group-4">
           <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
-            <b-form-checkbox value="me"
+            <b-form-checkbox value="interested"
               >I am interested in hiring Shane</b-form-checkbox
             >
           </b-form-checkbox-group>
@@ -64,15 +64,42 @@ export default {
           email: '',
           name: '',
           yourSite: '',
-          checked: false
+          checked: []
         },
         show: true
       }
     },
+    mounted() {
+      this.$nextTick(() => {
+        $('h1').hide().show()
+      })
+    },
   methods: {
+    submitToServer() {
+      return new Promise((resolve, reject) => {
+        fetch(`${process.env.functions}/mail`, {
+          method: "POST",
+          body: JSON.stringify(this.form)
+        }).then(response => {
+          resolve(response);
+        }).catch(err => {
+          reject(err);
+        });
+      })
+    },
     onSubmit(evt) {
       evt.preventDefault()
-      alert(JSON.stringify(this.form))
+      const message = this.form;
+      this.form = {message: message, subject: 'interested in you'};
+       this.submitToServer().then(response => {
+        const body = response.json();
+        if (Number(response.status) !== 200) {
+          console.log('Error submitting the form.')
+        } else {
+          console.log('Form was submitted!')
+          this.$router.push('/contact/thank-you')
+        }
+      })
     },
     onReset(evt) {
       evt.preventDefault()
@@ -80,9 +107,9 @@ export default {
       this.form.email = ''
       this.form.name = ''
       this.form.yourSite = ''
-      this.form.checked = false
+      this.form.checked = []
       // Trick to reset/clear native browser form validation state
-      this.show = false
+      this.show = []
       this.$nextTick(() => {
         this.show = true
       })

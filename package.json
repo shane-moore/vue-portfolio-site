@@ -3,25 +3,32 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
     "build": "nuxt build",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "dev": "set NODE_ENV=development&& nuxt dev & yarn functions:serve",
     "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "npm run lint:js"
+    "generate": "set NODE_ENV=production nuxt generate && yarn functions:build",
+    "functions:serve": "netlify-lambda serve lambda",
+    "functions:build": "netlify-lambda build lambda",
+    "precommit": "npm run lint",
+    "postinstall": "netlify-lambda install"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/vue-fontawesome": "^2.0.0",
+    "@nuxtjs/axios": "^5.12.2",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
     "i": "^0.3.6",
+    "netlify-lambda": "^2.0.1",
     "npm": "^6.14.8",
     "nuxt": "^2.14.6",
-    "nuxt-fontawesome": "^0.4.0"
+    "nuxt-fontawesome": "^0.4.0",
+    "popper.js": "^1.16.1",
+    "postmark": "^2.6.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
