@@ -75,11 +75,31 @@ export default {
       })
     },
   methods: {
+    submitToServer() {
+      return new Promise((resolve, reject) => {
+        fetch(`${process.env.functions}/mail`, {
+          method: "POST",
+          body: JSON.stringify(this.form)
+        }).then(response => {
+          resolve(response);
+        }).catch(err => {
+          reject(err);
+        });
+      })
+    },
     onSubmit(evt) {
       evt.preventDefault()
-      alert(JSON.stringify(this.form))
-      // perform ajax call to server to send the mail
-      const formData = new FormData();
+      const message = this.form;
+      this.form = {message: message, subject: 'interested in you'};
+       this.submitToServer().then(response => {
+        const body = response.json();
+        if (Number(response.status) !== 200) {
+          console.log('Error submitting the form.')
+        } else {
+          console.log('Form was submitted!')
+          this.$router.push('/contact/thank-you')
+        }
+      })
     },
     onReset(evt) {
       evt.preventDefault()

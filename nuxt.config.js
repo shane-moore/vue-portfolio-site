@@ -74,7 +74,10 @@ export default {
       browserBaseURL: process.env.BROWSER_BASE_URL
     }
   },
-
+  dev: process.env.NODE_ENV !== 'production',
+  env: {
+    functions: process.env.NODE_ENV === 'production' ? `${config.url}/.netlify/functions` : 'http://localhost:9000',
+  },
   privateRuntimeConfig: {
     axios: {
       baseURL: process.env.BASE_URL
