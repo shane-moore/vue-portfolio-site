@@ -21,7 +21,7 @@
     "@nuxtjs/axios": "^5.12.2",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.3",
-    "core-js": "^3.6.5",
+    "core-js": "^3.18.3",
     "i": "^0.3.6",
     "netlify-lambda": "^2.0.1",
     "npm": "^6.14.8",
